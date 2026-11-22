@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Pact — a duel of ember-mages</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <!-- Top bar: duel status, always visible on the table -->
+  <header id="topbar">
+    <div class="brand">EMBER PACT</div>
+    <div id="duel-status" class="status">Duel 1 &middot; Turn 1</div>
+    <div id="tally" class="tally">Wins 0 &middot; Losses 0</div>
+    <button id="mute-btn" class="icon-btn" title="Mute (M)">♪</button>
+  </header>
+
+  <!-- Rival side -->
+  <section id="rival-area" class="side">
+    <div class="mage rival-mage">
+      <div class="portrait" id="rival-portrait">V</div>
+      <div class="mage-info">
+        <div class="mage-name">Vex, the Ash Mage</div>
+        <div class="vitals">
+          <span class="life-wrap"><span class="life-label">LIFE</span><span id="rival-life" class="life-num">30</span></span>
+          <span class="bar"><span id="rival-life-bar" class="life-fill"></span></span>
+          <span id="rival-shield" class="shield-badge" hidden>■ 0</span>
+        </div>
+      </div>
+    </div>
+    <div id="rival-hand" class="hand rival-hand" aria-label="Rival hand"></div>
+  </section>
+
+  <!-- Middle of the table -->
+  <section id="mid-table">
+    <div id="last-play" class="last-play">
+      <div class="last-play-label">LAST PLAYED</div>
+      <div id="last-play-card" class="mini-card empty">—</div>
+    </div>
+    <div id="log" class="log" aria-live="polite"></div>
+    <div id="center-actions">
+      <button id="end-turn-btn" class="big-btn">End Turn <span class="key-hint">[Space]</span></button>
+      <div id="phase-note" class="phase-note">Your turn — play a card</div>
+    </div>
+  </section>
+
+  <!-- Player side -->
+  <section id="player-area" class="side">
+    <div class="mage-row">
+      <div class="mage player-mage">
+        <div class="portrait" id="player-portrait">S</div>
+        <div class="mage-info">
+          <div class="mage-name">You — Susay, Ember-Bound</div>
+          <div class="vitals">
+            <span class="life-wrap"><span class="life-label">LIFE</span><span id="player-life" class="life-num">30</span></span>
+            <span class="bar"><span id="player-life-bar" class="life-fill"></span></span>
+            <span id="player-shield" class="shield-badge" hidden>■ 0</span>
+          </div>
+          <div class="mana-row" id="mana-row" aria-label="Mana"></div>
+        </div>
+      </div>
+      <div id="deck-info" class="deck-info">Deck <span id="deck-count">24</span> &middot; Discard <span id="discard-count">0</span></div>
+    </div>
+    <div id="player-hand" class="hand player-hand" aria-label="Your hand"></div>
+    <div id="card-detail" class="card-detail">Hover a card to read it. Click a card to play it. Keys 1–7 play, Space ends the turn.</div>
+  </section>
+
+  <!-- Title screen -->
+  <div id="title-screen" class="overlay">
+    <div class="panel title-panel">
+      <div class="title-emblem">▲ ● ■ ✦</div>
+      <h1>EMBER PACT</h1>
+      <p class="tagline">A duel of ember-mages. Four suits, one pact:<br>burn the rival's life to ash before yours fades.</p>
+      <div class="rules-box">
+        <div><b class="suit-flame">▲ Flame</b> — strikes the rival &nbsp;·&nbsp; <b class="suit-stone">■ Stone</b> — raises a shield</div>
+        <div><b class="suit-tide">● Tide</b> — mends your life &nbsp;·&nbsp; <b class="suit-gale">✦ Gale</b> — draws cards &amp; shatters shields</div>
+        <div class="rules-line">Mana grows each turn (3 → 10). Draw a card each turn. First mage to 0 life loses.</div>
+      </div>
+      <button id="start-btn" class="big-btn start-btn">Begin the Duel</button>
+      <div class="title-foot">30 life each · best of endless duels · sound on for chimes</div>
+    </div>
+  </div>
+
+  <!-- Win / loss screens -->
+  <div id="end-screen" class="overlay" hidden>
+    <div class="panel end-panel">
+      <div id="end-emblem" class="end-emblem">▲</div>
+      <h1 id="end-title">VICTORY</h1>
+      <p id="end-text" class="tagline"></p>
+      <div id="end-stats" class="end-stats"></div>
+      <button id="again-btn" class="big-btn start-btn">Duel Again</button>
+      <div class="title-foot">The pact is sealed. The embers remember.</div>
+    </div>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
